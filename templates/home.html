@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+<h4 class="mb-6 md:text-5xl text-2xl text-center font-black text-white">
+    Which HTTP code should I use?
+</h4>
+<h5 class="mb-6 md:text-2xl text-lg text-center text-white">
+    Enter what you want to do and we will tell you the right HTTP code.
+</h5>
+<form action="/httpcode" method="post" class="md:w-2/5 w-10/12">
+    <div class="flex justify-center items-center space-x-6 w-full">
+        <textarea
+            type="text"
+            name="action"
+            rows="4"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-black-500 focus:border-black-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-black-500 dark:focus:border-black-500"
+            placeholder="Describe the response behavior..."
+        ></textarea>
+        <button
+            type="submit"
+            class="shadow-lg shadow-cyan-500/50 w-40 h-12 text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-black rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-center dark:focus:ring-gray-500 me-2 mb-2"
+        >
+            Let's go!
+        </button>
+    </div>
+</form>
+{% endblock %} {% block scripts %}
+<script>
+    let submitted = false;
+    const textarea = document.querySelector("textarea");
+    textarea.focus();
+    // on enter key press submit the form
+    const form = document.querySelector("form");
+    const button = form.querySelector("button");
+    textarea.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !submitted) {
+            submitted = true;
+            e.preventDefault();
+            button.disabled = true;
+            button.classList.add("cursor-not-allowed");
+            button.innerHTML = "Processing...";
+            form.submit();
+        }
+    });
+    // on form submit, disable the button
+    form.addEventListener("submit", () => {
+        submitted = true;
+        button.disabled = true;
+        button.classList.add("cursor-not-allowed");
+        button.innerHTML = "Processing...";
+    });
+</script>
+{% endblock %}

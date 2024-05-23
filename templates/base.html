@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>{% block title %}Which HTTP Code?{% endblock %}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Abel&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                font-family: "Abel", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        </style>
+    </head>
+    <body class="bg-gradient-to-b from-black to-cyan-900">
+        <nav class="px-4 py-4 text-white shadow-lg shadow-cyan-500/50">
+            Which HTTP Code?
+        </nav>
+        <main
+            class="h-screen max-w-full flex flex-col items-center justify-center"
+        >
+            {% block content %}{% endblock %}
+        </main>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
